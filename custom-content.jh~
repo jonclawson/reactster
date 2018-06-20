@@ -1,0 +1,37 @@
+entity Field {
+	type FieldType,
+    title String,
+    name String
+}
+
+enum FieldType {
+	TEXT, TEXTAREA, SELECT, NUMBER, RADIO, CHECKBOX
+}
+
+entity Form {
+	
+}
+
+entity FormContent {
+
+}
+
+entity FieldValue {
+	value String
+}
+
+relationship ManyToOne {
+	Field{Form} to Form,
+	FormContent{Form} to Form,
+	FieldValue{FormContent} to FormContent,
+	FieldValue{Field} to Field
+}
+
+entity FieldOption {
+    value String,
+    label String
+}
+
+relationship ManyToOne {
+	FieldOption{Field} to Field
+}

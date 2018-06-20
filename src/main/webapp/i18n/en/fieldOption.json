@@ -1,0 +1,24 @@
+
+{
+    "reactsterApp": {
+        "fieldOption" : {
+            "home": {
+                "title": "Field Options",
+                "createLabel": "Create a new Field Option",
+                "createOrEditLabel": "Create or edit a Field Option"
+            },
+            "created": "A new Field Option is created with identifier {{ param }}",
+            "updated": "A Field Option is updated with identifier {{ param }}",
+            "deleted": "A Field Option is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Field Option {{ id }}?"
+            },
+            "detail": {
+                "title": "Field Option"
+            },
+            "value": "Value",
+            "label": "Label",
+            "field": "Field"
+        }
+    }
+}

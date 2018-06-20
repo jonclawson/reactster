@@ -1,0 +1,13 @@
+{
+    "reactsterApp": {
+        "FieldType" : {
+            "null": "",
+            "TEXT": "TEXT",
+            "TEXTAREA": "TEXTAREA",
+            "SELECT": "SELECT",
+            "NUMBER": "NUMBER",
+            "RADIO": "RADIO",
+            "CHECKBOX": "CHECKBOX"
+        }
+    }
+}

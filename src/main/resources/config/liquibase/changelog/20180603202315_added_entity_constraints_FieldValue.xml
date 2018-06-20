@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity FieldValue.
+    -->
+    <changeSet id="20180603202315-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="form_content_id"
+                                 baseTableName="field_value"
+                                 constraintName="fk_field_value_form_content_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="form_content"/>
+
+        <addForeignKeyConstraint baseColumnNames="field_id"
+                                 baseTableName="field_value"
+                                 constraintName="fk_field_value_field_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="field"/>
+
+    </changeSet>
+</databaseChangeLog>

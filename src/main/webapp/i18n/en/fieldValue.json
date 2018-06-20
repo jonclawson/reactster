@@ -1,0 +1,24 @@
+
+{
+    "reactsterApp": {
+        "fieldValue" : {
+            "home": {
+                "title": "Field Values",
+                "createLabel": "Create a new Field Value",
+                "createOrEditLabel": "Create or edit a Field Value"
+            },
+            "created": "A new Field Value is created with identifier {{ param }}",
+            "updated": "A Field Value is updated with identifier {{ param }}",
+            "deleted": "A Field Value is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Field Value {{ id }}?"
+            },
+            "detail": {
+                "title": "Field Value"
+            },
+            "value": "Value",
+            "formContent": "Form Content",
+            "field": "Field"
+        }
+    }
+}

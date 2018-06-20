@@ -1,0 +1,22 @@
+
+{
+    "reactsterApp": {
+        "formContent" : {
+            "home": {
+                "title": "Form Contents",
+                "createLabel": "Create a new Form Content",
+                "createOrEditLabel": "Create or edit a Form Content"
+            },
+            "created": "A new Form Content is created with identifier {{ param }}",
+            "updated": "A Form Content is updated with identifier {{ param }}",
+            "deleted": "A Form Content is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Form Content {{ id }}?"
+            },
+            "detail": {
+                "title": "Form Content"
+            },
+            "form": "Form"
+        }
+    }
+}
