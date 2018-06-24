@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import { Button, Label } from 'reactstrap';
 // TODO import TextFormat only when fieldContainsDate
 // tslint:disable-next-line:no-unused-variable
 import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
@@ -52,7 +52,7 @@ export class FieldDetail extends React.Component<IFieldDetailProps> {
           title={field.title}
           value={fieldValue}/>
         case 'select':
-          return <AvInput type="select" 
+          return <AvInput type="select"
           key={fieldKey}
           name={field.name}
           label={field.title}
@@ -63,28 +63,36 @@ export class FieldDetail extends React.Component<IFieldDetailProps> {
           ))}
         </AvInput>
         case 'radio':
-        return <AvRadioGroup name={field.name} 
-        key={fieldKey}
-        value={fieldValue}
-        label={field.title} 
-        errorMessage="">
-                {fieldOptions.map(fieldOption => (
-                    <AvRadio label={fieldOption.label} value={fieldOption.value} />
-                ))}
+          return <AvRadioGroup
+                    name={field.name}
+                    key={fieldKey}
+                    value={fieldValue}
+                    label={field.title}
+                    className="form-control"
+                    errorMessage="">
+                        {fieldOptions.map(fieldOption => (
+                            <AvRadio label={fieldOption.label} value={fieldOption.value} />
+                        ))}
                </AvRadioGroup>
         case 'checkbox':
-          return <AvInput key={fieldKey}
-          id={field.id}
-          type={field.type.toLowerCase()}
-          className="form-control"
-          name={field.name}
-          title={field.title}
-          value={fieldValue || 'true'} checked={fieldValue}/>
+          return <AvGroup check value={fieldValue}>
+                  <Label check>
+                    <AvInput
+                    key={fieldKey}
+                    id={field.id}
+                    type={field.type.toLowerCase()}
+                    className="form-control"
+                    name={field.name}
+                    title={field.title}
+                    checked={fieldValue ? 'true': ''}
+                    />
+                  </Label>
+                </AvGroup>
       }
     }
     return (
       <div>
-          <AvGroup>       
+          <AvGroup>
             <label>{field.title}</label>
              { fieldType(field) }
           </AvGroup>
