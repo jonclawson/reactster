@@ -13,16 +13,16 @@ import {
     getEntities as getFields
 } from './field.reducer';
 
-import { 
+import {
     getEntity as getFormContent,
-    updateEntity as updateFormContent, 
-    createEntity as createFormContent 
+    updateEntity as updateFormContent,
+    createEntity as createFormContent
 } from '../form-content/form-content.reducer';
 
-import { 
+import {
     getEntity as getFieldValue,
     getEntities as getFieldValues,
-    updateEntity as updateFieldValue, 
+    updateEntity as updateFieldValue,
     createEntity as createFieldValue,
     getformContents,
     getfields
@@ -81,7 +81,7 @@ export class FieldForm extends React.Component<IFieldFormProps, IFieldFormState>
         if (fieldValue) {
             let fieldValueBody = { id: fieldValue.id, field: {id: field.id}, formContent: {id: formContent.id}, value: values[field.name]}
             await this.props.updateFieldValue(fieldValueBody)
-        } 
+        }
         else {
             let fieldValueBody = { field: {id: field.id}, formContent: {id: formContent.id}, value: values[field.name]}
             let fieldValue = await this.props.createFieldValue(fieldValueBody)
@@ -101,7 +101,7 @@ export class FieldForm extends React.Component<IFieldFormProps, IFieldFormState>
         await this.saveFieldValues(values, this.props.formContent )
         this.props.history.push(`/form-content/${this.props.formContent.id}`);
     }
-   
+
   }
 
   render() {
@@ -120,14 +120,29 @@ export class FieldForm extends React.Component<IFieldFormProps, IFieldFormState>
             }
         }
     }
+    let formModel = isNew ? {} : (fields => {
+      let model = { }
+      fields.forEach(field => {
+        model[field.name] = (() => {
+          let fieldValue = fieldValues.find(fieldValue =>{
+            if (fieldValue.field && fieldValue.field.id === field.id) {
+              return fieldValue
+            }
+          })
+          return fieldValue ? fieldValue.value : ''
+        }
+        )()
+      })
+      return model
+    })(fields)
     return (
-      <div> 
-        <AvForm model={isNew ? {} : formContent} onSubmit={this.saveEntity}>
+      <div>
+        <AvForm model={isNew ? {} : formModel} onSubmit={this.saveEntity}>
             {
                 fields.map((field, i) => (
-                    <FieldDetail Entity={field} 
-                                key={i.toString()} 
-                                fieldKey={i.toString()} 
+                    <FieldDetail Entity={field}
+                                key={i.toString()}
+                                fieldKey={i.toString()}
                                 fieldValue={findFieldValue(field)} >
                     </FieldDetail>
                 ))
@@ -147,15 +162,15 @@ const mapStateToProps = storeState => ({
   formContent: storeState.formContent.entity
 });
 
-const mapDispatchToProps = { 
-    getforms, 
-    getFields, 
-    getFieldValues, 
-    createFormContent, 
-    getFormContent, 
-    updateFormContent, 
+const mapDispatchToProps = {
+    getforms,
+    getFields,
+    getFieldValues,
+    createFormContent,
+    getFormContent,
+    updateFormContent,
     createFieldValue,
-    updateFieldValue 
+    updateFieldValue
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FieldForm);

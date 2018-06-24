@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button, Label } from 'reactstrap';
+import { Button, Label, Input } from 'reactstrap';
 // TODO import TextFormat only when fieldContainsDate
 // tslint:disable-next-line:no-unused-variable
 import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
@@ -39,27 +39,29 @@ export class FieldDetail extends React.Component<IFieldDetailProps> {
     const { fieldKey, fieldValue } = this.props;
     const field = this.props.Entity || this.props.field;
     let fieldOptions = this.props.fieldOptions.filter(fieldOption => fieldOption.field.id === field.id)
+    const fieldTrue = (fieldValue && fieldValue === 'true' ? 'true': 'false')
     const fieldType = field => {
       switch (field.type.toLowerCase()) {
         case 'text':
         case 'textarea':
         case 'number':
-          return <AvInput key={fieldKey}
-          id={field.id}
-          type={field.type.toLowerCase()}
-          className="form-control"
-          name={field.name}
-          title={field.title}
-          value={fieldValue}/>
+          return <AvInput
+            key={fieldKey}
+            id={field.id}
+            type={field.type.toLowerCase()}
+            className="form-control"
+            name={field.name}
+            title={field.title}
+            value={fieldValue}/>
         case 'select':
           return <AvInput type="select"
-          key={fieldKey}
-          name={field.name}
-          label={field.title}
-          value={fieldValue}
-          helpMessage="">
+            key={fieldKey}
+            name={field.name}
+            label={field.title}
+            value={fieldValue}
+            >
           {fieldOptions.map(fieldOption => (
-             <option value={fieldOption.value}>{fieldOption.label}</option>
+             <option key={fieldKey + fieldOption.value} value={fieldOption.value}>{fieldOption.label}</option>
           ))}
         </AvInput>
         case 'radio':
@@ -71,23 +73,19 @@ export class FieldDetail extends React.Component<IFieldDetailProps> {
                     className="form-control"
                     errorMessage="">
                         {fieldOptions.map(fieldOption => (
-                            <AvRadio label={fieldOption.label} value={fieldOption.value} />
+                            <AvRadio key={fieldKey + fieldOption.label} label={fieldOption.label} value={fieldOption.value} />
                         ))}
                </AvRadioGroup>
         case 'checkbox':
-          return <AvGroup check value={fieldValue}>
-                  <Label check>
-                    <AvInput
+          return <AvInput
                     key={fieldKey}
                     id={field.id}
-                    type={field.type.toLowerCase()}
+                    type='checkbox'
                     className="form-control"
                     name={field.name}
                     title={field.title}
-                    checked={fieldValue ? 'true': ''}
-                    />
-                  </Label>
-                </AvGroup>
+                    trueValue='true'
+                  />
       }
     }
     return (
