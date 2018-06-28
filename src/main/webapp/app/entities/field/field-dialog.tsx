@@ -134,6 +134,9 @@ export class FieldDialog extends React.Component<IFieldDialogProps, IFieldDialog
                 <option value="CHECKBOX">
                     CHECKBOX
                 </option>
+                <option value="FILE">
+                    FILE
+                </option>
               </AvInput>
             </AvGroup>
             <AvGroup>
@@ -166,12 +169,12 @@ export class FieldDialog extends React.Component<IFieldDialogProps, IFieldDialog
               <AvFeedback>This field is required.</AvFeedback>
               <AvFeedback>This field cannot be longer than 50 characters.</AvFeedback>
             </AvGroup>
-           
+
             <AvGroup>
               <Label for="form.id">
                 <Translate contentKey="reactsterApp.field.form">Form</Translate>
               </Label>
-              { !this.props.match.params.formId ? 
+              { !this.props.match.params.formId ?
               <AvInput type="select"
                 className="form-control"
                 name="form.id"

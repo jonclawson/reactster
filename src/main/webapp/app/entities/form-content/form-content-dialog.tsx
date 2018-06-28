@@ -79,7 +79,7 @@ export class FormContentDialog extends React.Component<IFormContentDialogProps, 
       <div >
         <Translate contentKey="reactsterApp.formContent.home.createOrEditLabel">Create or edit a FormContent</Translate>
       </div>
-      { isNew ? 
+      { isNew ?
        <AvForm model={isNew ? {} : formContent} onSubmit={this.saveEntity} >
           <div>
             { formContent.id ?
@@ -113,7 +113,7 @@ export class FormContentDialog extends React.Component<IFormContentDialogProps, 
                 value={this.state.formId} />
             </AvGroup>
           </div>
-          <div>
+          {/* <div>
             <Button color="secondary" onClick={this.handleClose}>
               <FaBan/>&nbsp;
               <Translate contentKey="entity.action.cancel">Cancel</Translate>
@@ -122,13 +122,15 @@ export class FormContentDialog extends React.Component<IFormContentDialogProps, 
               <FaFloppyO/>&nbsp;
               <Translate contentKey="entity.action.save">Save</Translate>
             </Button>
-          </div>
+          </div> */}
         </AvForm>
         : null
       }
-     {formContent.form && !isNew ? 
-     <FieldForm history={this.props.history} formId={formContent.form.id} formContentId={this.props.match.params.id}/>
-    : null} 
+     { formContent.form && !isNew ?
+       <FieldForm history={this.props.history} formId={formContent.form.id || 0} formContentId={formContent.id || 0}/>
+      :
+      <FieldForm history={this.props.history} formId={this.state.formId} formContentId={0}/>
+      }
     </div>
     );
   }
