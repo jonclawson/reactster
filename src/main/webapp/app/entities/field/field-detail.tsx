@@ -86,6 +86,15 @@ export class FieldDetail extends React.Component<IFieldDetailProps> {
                     title={field.title}
                     trueValue='true'
                   />
+          case 'file':
+            return <AvInput
+              key={fieldKey}
+              id={field.id}
+              type={field.type.toLowerCase()}
+              className="form-control"
+              name={field.name}
+              title={field.title}
+              value={fieldValue}/>
       }
     }
     return (
